@@ -30,9 +30,11 @@ namespace Popcron.Console
 
         public delegate bool OnAboutToPrint(object obj, string text, LogType type);
         public delegate void OnPrinted(string text, LogType type);
+        public delegate void OnViewChange(bool isOpen);
 
         public static OnAboutToPrint onAboutToPrint;
         public static OnPrinted onPrinted;
+        public static OnViewChange onViewChange;
 
         /// <summary>
         /// The maximum amount of lines that can be shown on screen.
@@ -1029,6 +1031,9 @@ namespace Popcron.Console
             {
                 IsOpen = !IsOpen;
                 current.Use();
+
+                onAboutToPrint?.Invoke(IsOpen);
+                
                 return;
             }
 
