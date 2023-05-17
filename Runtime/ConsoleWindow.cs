@@ -1032,7 +1032,7 @@ namespace Popcron.Console
                 IsOpen = !IsOpen;
                 current.Use();
 
-                onAboutToPrint?.Invoke(IsOpen);
+                onViewChange?.Invoke(IsOpen);
                 
                 return;
             }
